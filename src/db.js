@@ -2,6 +2,21 @@ const sql = require('mssql');
 var config = require('./config');
 
 module.exports = {
+
+    executeDelete: (query) => {
+        return new Promise((resolve, reject) => {
+            sql.connect(config).then(pool => {
+                return pool.request().query(query);
+            }).then(result => {
+                sql.close();
+                resolve('success');
+            }).catch(err => {
+                sql.close();
+                reject(err);
+            });
+        })
+    },
+    
     ExecuteSelectQuery: (query) => {
         return new Promise((resolve, reject) => {
             sql.connect(config).then(pool => {
