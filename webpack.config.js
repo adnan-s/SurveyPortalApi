@@ -1,19 +1,40 @@
-var htmlWebpackPlugin = require('html-webpack-plugin');
-var nodeExternals = require('webpack-node-externals');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-    mode: 'development',
-    target: 'node',
-    externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
+    entry: './src/server.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
-        publicPath: '/'
+        path: path.join(__dirname, 'dist'),
+        publicPath: '/',
+        filename: '[name].js'        
+    },
+    target: 'node',
+    node: {
+        // Need this when working with express, otherwise the build fails
+        __dirname: false,   // if you don't put this is, __dirname
+        __filename: false  // and __filename return blank or /
+    },
+    externals:[nodeExternals()],
+    module: {
+        rules: [
+            {
+                test: /\.html$/,
+                use: [
+                    { 
+                        loader: 'html-loader',
+                        options: { minimize: false }
+                    }
+                ]
+            }
+        ]
     },
     plugins: [
         new htmlWebpackPlugin({
-            template: 'src/index.html'
+            template: './src/index.html',
+            filename: 'index.html',
+            excludeChunks: ['server']
         })
     ]
 }

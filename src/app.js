@@ -7,8 +7,6 @@ const questionApi = require('./questionApi');
 const quoteApi = require('./quoteApi');
 const userApi = require('./userApi');
 
-const port = 8080;
-
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -19,8 +17,4 @@ app.use('/question', questionApi);
 app.use('/qutoe', quoteApi);
 app.use('/user', userApi);
 
-app.get('/', (req, res) => {
-    res.sendFile('index.html');
-});
-
-app.listen(port);
+module.exports = app;

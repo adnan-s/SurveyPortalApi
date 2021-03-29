@@ -17,14 +17,13 @@ router.post('/', (req, res) => {
         .catch(err => res.status(501).send(err));
 })
 
-router.get('/:id', (req, res) => {
-    var query = "select * from tblQuestion where SurveyId = " + req.params.id;
-
+router.get('/:surveyId', (req, res) => {
+    const surveyId = req.params.surveyId;
+    var query = "select * from tblQuestion where SurveyId = " + surveyId;
     db.getDataSet(query).then((dsQuestions) => {
-        query = "select * from tblOptions where Questionid in (select Id from tblQuestion where SurveyId = 1)"
+        query = "select * from tblOptions where Questionid in (select Id from tblQuestion where SurveyId = "+ surveyId +")"
 
         db.getDataSet(query).then((dsOptions) => {
-
             dsQuestions.forEach((q) => {
                 q.options = dsOptions.filter(option => option.QuestionId === q.Id)
             })
