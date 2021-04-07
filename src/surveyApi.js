@@ -1,22 +1,11 @@
-const express = require('express');
-const db = require('./db');
-const router = express.Router();
+const router = require('express').Router();
+const survey = require('./controllers/survey');
 
-router.get('/', (req, res) => {
-    var query = "select * from tblSurvey";
-    db.ExecuteSelectQuery(query)
-        .then(data => res.status(200).send(data))
-        .catch(err => res.status(501).send(err));
-});
-
-router.post('/', (req, res) => {
-    const survey = req.body;
-    var query = `insert into tblSurvey(Name, Description, StartDate, EndDate, IsPublic)
-    values ('${survey.name}', '${survey.description}', '${survey.startDate}', 
-    '${survey.endDate}', '${survey.isPublic ? 1 : 0}')`;
-    db.ExecuteSelectQuery(query)
-        .then(data => res.status(200).send(data))
-        .catch(err => res.status(501).send(err));
-})
+router.get('/', survey.getAll);
+router.get('/:id', survey.getById)
+router.post('/', survey.insert);
+router.put('/', survey.update);
+router.delete('/:id', survey.delete);
 
 module.exports = router;
+

@@ -1,5 +1,15 @@
 const sql = require('mssql');
-var config = require('./config');
+
+const config = {
+    server: process.env.DB_SERVER,
+    database: process.env.DATABASE,
+    user: process.env.USER,
+    password: process.env.DB_PASSWORD,
+    port: +process.env.DB_PORT,
+    options: {
+        encrypt: false
+    }
+}
 
 module.exports = {
 
