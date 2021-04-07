@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const db = require('./db');
 const faqApi = require('./faqApi');
 const surveyApi = require('./surveyApi');
 const questionApi = require('./questionApi');
