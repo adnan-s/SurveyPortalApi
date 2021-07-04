@@ -1,21 +1,21 @@
 const express = require('express');
 const cors = require('cors');
-const faqApi = require('./faqApi');
-const surveyApi = require('./surveyApi');
-const questionApi = require('./questionApi');
-const quoteApi = require('./quoteApi');
-const userApi = require('./userApi');
-const supportApi = require('./supportApi');
+const faqApi = require('./api/faqApi');
+const surveyApi = require('./api/surveyApi');
+const questionApi = require('./api/questionApi');
+const quoteApi = require('./api/quoteApi');
+const userApi = require('./api/userApi');
+const supportApi = require('./api/supportApi');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static('src'));
-app.use('/faq', faqApi);
-app.use('/survey', surveyApi);
-app.use('/question', questionApi);
-app.use('/qutoe', quoteApi);
-app.use('/user', userApi);
-app.use('/support', supportApi);
+app.use('/api/faq', faqApi);
+app.use('/api/survey', surveyApi);
+app.use('/api/question', questionApi);
+app.use('/api/qutoe', quoteApi);
+app.use('/api/user', userApi);
+app.use('/api/support', supportApi);
 
 module.exports = app;

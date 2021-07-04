@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const support = require('./controllers/support');
+const support = require('../controllers/support');
 
 router.get('/', support.getAll);
 router.post('/', support.insert);

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const survey = require('./controllers/survey');
+const survey = require('../controllers/survey');
 
 router.get('/', survey.getAll);
 router.get('/:id', survey.getById)
