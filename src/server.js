@@ -83,6 +83,8 @@ app.use(
   swaggerUi.setup(specs)
 );
 
+console.log(`survey portal api lisening on port ${port}`);
+console.log(`Navigate to: http://localhost:${port}`);
 app.listen(port);
 
 // web.surveyportal.com
