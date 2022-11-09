@@ -35,7 +35,7 @@ router.get('/', faqController.getAll);
  *       201:
  *         ...
 */
-router.post('/', authController.authenticate, faqController.insert);
+router.post('/', faqController.insert);
 
 /**
  * @swagger
@@ -53,7 +53,7 @@ router.post('/', authController.authenticate, faqController.insert);
  *       200:
  *         ...
 */
-router.delete('/:id', authController.authenticate, faqController.delete);
+router.delete('/:id', faqController.delete);
 
 /**
  * @swagger
@@ -79,7 +79,8 @@ router.delete('/:id', authController.authenticate, faqController.delete);
  *       201:
  *         ...
 */
-router.put('/', authController.authenticate, faqController.update);
+// router.put('/', authController.authenticate, faqController.update);
+router.put('/', faqController.update);
 
 /**
  * @swagger
@@ -97,6 +98,6 @@ router.put('/', authController.authenticate, faqController.update);
  *     responses:
  *       200:
  *         ...
- */router.get('/:id', authController.authenticate, faqController.getById);
+ */router.get('/:id', faqController.getById);
 
 module.exports = router;
