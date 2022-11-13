@@ -1,16 +1,21 @@
-var assert = require('assert');
+const expect = require('chai').expect;
+const assert = require('chai').assert;
+const util = require('util');
+const should = require('chai').should();
+const supertest = require('supertest');
+const app = require('../src/server');
+
+const request = supertest(app);
 
 describe("FAQ API:", () => {
-    it("should bring a list of FAQs", () => {
-        const x = 10;
-        assert(x).equal(10);
+    it("should bring a list of FAQs", (done) => {
+        request.get('/faq')
+        .expect(200)
+        .end((err,res) => {
+                expect(res.body).to.have.lengthOf(2);
+                expect(res.statusCode).to.equal(200);
+                done(err);
+        });
     });
 
-    it('should do something else', () => {
-
-    });
-
-    it('', () => {
-
-    });
 })

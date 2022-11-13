@@ -90,3 +90,4 @@ app.listen(port);
 // web.surveyportal.com
 // api.surveyportal.com:81
 // http://localhost:8080
+module.exports = app;
